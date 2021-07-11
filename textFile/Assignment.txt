@@ -1,0 +1,192 @@
+--------------------------------------
+Assignment 22/03/2021
+--------------------------------------
+Write a function average that can average any given number of numbers without rest parameter syntax (...)
+
+example:average(1,2,3,4) => 2.5average(1,2,3,4,5) => 3
+---------------------------------------------------------------------------------------------------------------
+Assignment 23/03/2021
+--------------------------------------------------------------------------
+Create an asynchronous Prime Finder that should return a list of primes between a given range
+The Function should be ansynchronous
+
+findPrimes(2,100) ; //should finish second
+
+findPrimes(2,10000); //should finish last
+
+findPrimes(2,10); //should finish first
+
+Hint Use Cooperative Scheduling:	
+Each find primes should find a few primes at a time		
+Say after ever 10 prime is found	
+	Then it should take some time off (time out) so that other functions can utilize the time and work
+	Each function should be co-operative so it gives others a time to work
+	Hint: setTimeout will not work. Try setInterval()
+	Your function must have a mechanism to return all result and not just console.log it
+	A simple 'return' statement will not work
+---------------------------------------------------------------------------------------------------------------
+Add a functionality to a javascript function to 
+So that function can suggest how many times it is called
+Example:
+function plus(x,y){ return x+y; }
+//add your functionality here
+plus(2,3);
+Plus(6,7);
+plus(7,2);
+console.log("function plus is called for "+plus.times() ); //3
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+Assignment01
+Implement findPrimes using both callback model and Promise Model
+ 
+Prepare a code walkthrough presentation about relationship between Promise and async - await
+-----------------------------------------------------------------------------------------------
+//plus funciton will return immediately
+//result shall be available after 2 seconds
+//plus function can't return result 
+//callback is a function that will take the result as the argument
+function  plus(x,y, callback) {
+    setTimeout(function(){
+        callback(x+y);  //hey this is the final result
+    },2000);
+}
+ 
+function printResult(result){
+    console.log(result);
+}
+ 
+plus(5,15, printResult);
+ 
+plus(10,100, result=> console.log(result));
+ 
+plus(200,300, console.log);
+
+console.log("please wait calculating...");
+-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+function divide(x,y){
+    let promise=new Promise(function(resolve,reject){
+        setTimeout(function(){
+            if(y==0)
+                return reject("division by Zero"); //error message
+            else
+                return resolve(x/y); //correct answer
+        },2000);
+    });
+ 
+    return promise;
+}
+ 
+function testDivide(a,b){
+ 
+    let promise=divide(a,b);
+    
+    promise
+        //in case it is resolved
+        .then(result=>console.log(`divide(${a} , ${b}) => ${result}`))
+        //in case it is rejected
+        .catch(error=>console.log(`error divide(${a},${b})=> ${error}`));
+ 
+    console.log('trying to divide',a,"/",b);
+}
+ 
+testDivide(15,3);
+testDivide(10,0);
+testDivide(4,5);
+
+--------------------------------------------------------------------------------------------------------------
+Prime 1 <<<24/03/2020>>>
+--------------------------------------------------------------------------------------------------------------
+const isPrimeSync = function(number){
+    if(number<2)
+        return false;
+    if(number==2)
+        return true;
+   for(let i=2;i<number;i++)
+    if(number%i===0)
+        return false;
+ 
+    return true;
+}
+ 
+const findPrimes= (min,max,callback)=>{
+ 
+    let primes=[]; //to hold all the prime values
+    let lo=min;
+ 
+    let hi= Math.min(lo+1000,max); //In one batch I will do 1000 or upto max, whichever is less
+ 
+    let iid=setInterval( ()=>{
+ 
+        for(let i=lo;i<hi;i++)
+            if(isPrimeSync(i))
+                primes.push(i);
+    
+        lo=hi;
+        hi=Math.min(lo+100,max);
+        if(lo>=max){
+            //time to finish
+            clearInterval(iid);
+            //now I must return the result
+            callback(primes); //call the callback an send information to the client
+        }
+ 
+    },1); //1 ms just gives someone else waiting to run
+}
+ 
+function testFindPrimes(min,max){
+    findPrimes(min,max, primes=> console.log(`Total primes between ${min}-${max} is ${primes.length}`));
+    console.log(`finding primes between ${min}-${max}...`);
+}
+ 
+testFindPrimes(2,10000); //should finish second
+testFindPrimes(2,100000); //should finish last
+testFindPrimes(2,100); //should finish firs
+--------------------------------------------------------------------------------------------------------------
+Prime 2 <<<24/03/2021>>>
+--------------------------------------------------------------------------------------------------------------
+const isPrimeSync = function(number){
+    if(number<2)
+        return false;
+    if(number==2)
+        return true;
+   for(let i=2;i<number;i++)
+    if(number%i===0)
+        return false;
+ 
+    return true;
+}
+ 
+const findPrimes= (min,max,callback)=>{
+ 
+    
+    let lo=min;
+ 
+    let hi= Math.min(lo+10,max); //In one batch I will do 1000 or upto max, whichever is less
+    let count=0;
+ 
+    let iid=setInterval( ()=>{
+ 
+        for(let i=lo;i<hi;i++){
+            if(isPrimeSync(i)){
+                count++;
+                callback({action:"PRIME",min,max, index: count, value:i});  
+            }
+        }
+ 
+    
+        lo=hi;
+        hi=Math.min(lo+10,max);
+        if(lo>=max){
+            //time to finish
+            clearInterval(iid);
+            //now I must return the result
+            callback({action:"DONE", min,max, primes:count}); //we found count primes and search is over
+        }
+ 
+    },1); //1 ms just gives someone else waiting to run
+}
+ 
+findPrimes(2,100, console.log);
+findPrimes(100,200,console.log);
+--------------------------------------------------------------------------------------------------------------

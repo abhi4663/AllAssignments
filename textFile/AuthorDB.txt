@@ -1,0 +1,26 @@
+router.get("/get/:author", async (req: any, res: any) => {
+  try {
+    const book: any = await Book.find({
+      author: { $regex: new RegExp(req.params.author), $options: "i" },
+    });
+    if (book.length > 0) {
+      res.status(200).json(book);
+    } else {
+      res.status(404).json("author not found");
+    }
+  } catch (err: any) {
+    res.status(404).json({ err: err.message, success: false });
+  }
+});
+router.get("/a/b/allAuthors", async (req: any, res: any) => {
+  try {
+    const books = await Book.distinct("author");
+    res.json(books);
+  } catch (err) {
+    res.send("get request");
+  }
+});
+
+
+
+Good Morning Pooja.. Peers have received a congratulatory mail on completing the orchard program. I have not received it yet and also did not get the evening meet invitation. Can you please let me know if there is any issue?

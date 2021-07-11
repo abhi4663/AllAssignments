@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company</title>
+  </head>
+  <body>
+    <div>
+      <table border="10">
+        <thead>
+          <th>CompanyName</th>
+          <th>Contact</th>
+          <th>Country</th>
+        </thead>
+        <tbody id="company-table"></tbody>
+      </table>
+    </div>
+    <!-- <script>
+      document.addEventListener('DOMContentLoaded', async () => {
+        let response = await fetch('company.xml');
+        console.log(response);
+        let xmlString = await response.text();
+        console.log(xmlString);
+        let parser = new DOMParser();
+        let xml = parser.parseFromString(xmlString, 'application/xml');
+        console.log(xml);
+        let comp = xml.getElementsByTagName('company');
+        console.log(comp);
+        let tbody = document.getElementById('company-table');
+        for (let i = 0; i < comp.length; i++) {
+          let name = comp[i].querySelector('name').innerHTML;
+          let contact = comp[i].querySelector('contact').innerHTML;
+          let country = comp[i].querySelector('country').innerHTML;
+          let row = `
+                    <tr>
+                        <td>${name}</td>
+                        <td>${contact}</td>
+                        <td>${country}</td>
+                    </tr>
+                    `;
+          tbody.innerHTML += row;
+        }
+      });
+    </script> -->
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<company_details>
+    <company>
+        <name>Alfreds Futterkiste</name>
+        <contact>Maria Anders</contact>
+        <country>	Germany</country>
+    </company>
+    <company>
+        <name>centro comercial Moctezuma</name>
+        <contact>Francisco chang</contact>
+        <country>Mexico</country>
+    </company>
+    <company>
+        <name>Ernst Handel</name>
+        <contact>Roland Mendel</contact>
+        <country>Austria</country>
+    </company>
+    <company>
+        <name>Island Trading</name>
+        <contact>Helen Bennett</contact>
+        <country>canada</country>
+    </company>
+</company_details>

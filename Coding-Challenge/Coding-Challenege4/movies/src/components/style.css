@@ -1,0 +1,33 @@
+a {
+  color: black;
+}
+a:hover {
+  text-decoration: none;
+  color: black;
+}
+.movies {
+  margin-top: 72px;
+}
+h1 {
+  text-transform: capitalize;
+}
+.box {
+  float: left;
+  box-shadow: -1px 4px 20px -6px rgb(0 0 0 / 75%);
+  height: 400px;
+  width: 100px;
+  position: relative;
+  left: 76px;
+  margin: 10px;
+  margin-top: 86px;
+}
+.box-image {
+  height: 300px;
+  border-radius: 20px;
+  position: relative;
+  transform: scale(0.8);
+}
+.box-image:hover {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}

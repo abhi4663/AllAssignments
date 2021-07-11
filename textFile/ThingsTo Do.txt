@@ -1,0 +1,46 @@
+------------------------------------------------
+March-19/03/2021
+------------------------------------------------
+Block Scoping (let/const)
+Arrow functions
+Modules
+Classes
+Spread | Rest
+Destructuring
+Template String Syntax
+Default and optional parameter
+Object.assign()
+Object.values() | enteries() | keys()
+Map & Set
+----------------------------------------------------
+March-22/03/2021
+----------------------------------------------------
+Typescript
+interface
+type keyword
+----------------------------------------------------
+March-26/03/2021
+----------------------------------------------------
+RTL Management(Core concepts)
+*******JS/TS********
+****FOCUS ON:arrays(filter,Map,reduce,foreach)**********
+
+HTML local storage in BOOK APP
+store all our value in local storage
+
+WEB COMPONENTS CONCEPTUAL ONLY
+
+----------------------------------------------------
+March 31st Agenda
+----------------------------------------------------	
+Prepare on design patterns		
+Module
+Prototype
+Observer
+Singleton
+
+-----------------------------------------------------
+April 8th
+-----------------------------------------------------
+Http Module
+-----------------------------------------------------
